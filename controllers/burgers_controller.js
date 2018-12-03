@@ -8,7 +8,7 @@ const burger = require('../models/burger.js');
 router.get('/', (req, res) => {
     burger.all((data) =>{
         var hbsObj = {
-            burgers: data
+            burger: data
         };
         console.log(hbsObj);
         res.render('index', hbsObj);
@@ -27,7 +27,7 @@ router.post('/api/burgers', (req,res) => {
     });
 });
 
-router.put('/api/burger/:id', (req,res) => {
+router.put('/api/burgers/:id', (req,res) => {
     const condition = 'id = ' + req.params.id;
     console.log('condition', condition);
 

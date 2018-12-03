@@ -1,2 +1,2 @@
-INSERT INTO Burgers (name, eaten) VALUES ('Blue Cheese Bacon Burger', false);
+INSERT INTO burgers (name, eaten) VALUES ('Blue Cheese Bacon Burger', false);
 
