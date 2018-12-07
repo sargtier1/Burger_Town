@@ -2,28 +2,15 @@
 const connection = require('../config/connection.js');
 
 // query helper function
-var prinntQuestionMarks = (num) => {
+function printQuestionMarks(num) {
     var arr = [];
-    for(i = 0; i < arr.length; i++) {
-        arr.push('?');
+  
+    for (var i = 0; i < num; i++) {
+      arr.push("?");
     }
+  
     return arr.toString();
-}
-
-// helper function converts to SQL syntax
-var objToSql = (ob) => {
-    var arr = [];
-    for (var key in ob) {
-        var value = ob[key];
-        if (Object.hasOwnProperty.call(ob,key)) {
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
-            }
-        arr.push(key + '+' + value);
-        }
-    }
-    return arr.toString();
-}
+  }
 
 // object with all SQL Statment functions
 var orm = {
@@ -36,13 +23,15 @@ var orm = {
     },
 //----------------------------------------------------------
     create: (table, cols, vals, cb) => {
+        console.log(vals);
+        console.log(printQuestionMarks(vals.length));  
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
         queryString += cols.toString();
         queryString += ") ";
         queryString += "VALUE (";
-        queryString += prinntQuestionMarks(vals.length);
+        queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
         console.log(queryString);
@@ -69,7 +58,7 @@ var orm = {
     },
 //----------------------------------------------------------
     delete: (table, condition, cb) => {
-        var queryString = "DELETE FROM " + table;
+        var queryString = " DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;
 

@@ -16,7 +16,9 @@ router.get('/', (req, res) => {
 });
 
 // full list of all burgers
-router.post('/api/burgers', (req,res) => {
+router.post('/api/burgers', (req, res) => {
+    console.log("yo");
+    console.log(req.body);
     burger.create([
         "name", "eaten"
     ],
@@ -34,7 +36,7 @@ router.put('/api/burgers/:id', (req,res) => {
     burger.update({
         eaten: req.params.eaten
     }, condition, (result) => {
-        if (result.changedRows == 0) {
+        if (result.changedRows === 0) {
             return res.status(404).end();
         } else {
             res.status(200).end();
@@ -46,7 +48,8 @@ router.delete('/api/burgers/:id', (req, res) => {
     const condition = 'id = ' + req.params.id;
     
     burger.delete(condition, (result) => {
-        if (result.affectedRows == 0) {
+        if (result.affectedRows === 0) {
+            console.log("err test");
             return res.status(404).end();
         } else {
             return res.status(200).end();

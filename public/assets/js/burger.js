@@ -1,6 +1,8 @@
 
 $(() => {
-    $(".change-status").on("click"), (e) =>{
+    $("#change-status").on("click"), (e) =>{
+        event.preventDefault();
+
         var id = $(this).data("id");
         var newEaten = $(this).data("");
 
@@ -8,7 +10,7 @@ $(() => {
             eaten: newEaten,
         };
 
-        $.ajax("/api/burgers/" + id, {
+        $.ajax("/api/burgers" + id, {
             type: "PUT",
             data: newEatenState
         }).then(
@@ -19,11 +21,11 @@ $(() => {
         )
     };
 
-    $(".create-form").on("submit", (e) => {
+    $(".create-form").on("click", (e) => {
         event.preventDefault();
 
         var newBurger = {
-            name: $("#bu").val().trim(),
+            name: $("#burger").val().trim(),
             eaten: $("[name=eaten]:checked").val().trim()
         };
 
